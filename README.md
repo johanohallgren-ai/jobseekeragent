@@ -1,38 +1,37 @@
 # JobSeekerAgent
 
-This repository is currently an initialized Git project with no application code yet.
+JobSeekerAgent is a lightweight Python package that helps rank job postings against a candidate profile.
 
-## Current state
+## Features
 
-- One placeholder file: `.gitkeep`
-- One commit in history: `Initialize repository`
-- Active branch: `work`
+- Candidate/job datamodels via dataclasses.
+- Match scoring based on:
+  - required skill overlap
+  - target title relevance
+  - preferred location
+- Ranking API to sort postings by best fit first.
+- A small CLI demo output.
 
-## Suggested starter structure
+## Project structure
 
-As you begin building, consider a clear layout like:
+- `src/jobseekeragent/agent.py` — core domain model and ranking logic
+- `src/jobseekeragent/cli.py` — demo runner
+- `tests/test_agent.py` — unit tests for scoring and ranking
 
-- `src/` — main application code
-- `tests/` — automated tests
-- `docs/` — architecture and onboarding notes
-- `scripts/` — developer scripts (setup, lint, release helpers)
-- `README.md` — project overview and quickstart
+## Quickstart
 
-## Good first additions
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .
+pytest
+python -m jobseekeragent.cli
+```
 
-1. Define the product goal and scope in this README.
-2. Choose a runtime/toolchain and add a lockfile.
-3. Add a minimal runnable app skeleton.
-4. Add formatter/linter configuration.
-5. Add CI to run checks on every PR.
-6. Add basic tests and contribution guidelines.
+## Example output
 
-## Learning roadmap for newcomers
-
-1. **Understand Git history and branching flow** used by the team.
-2. **Learn the stack choices** once added (framework, package manager, test runner).
-3. **Read the architecture docs** in `docs/` when created.
-4. **Run tests locally** and understand quality gates.
-5. **Trace a feature end-to-end** from input -> business logic -> output.
-
-Until source code is added, the best next step is to establish project conventions and create the first vertical slice of functionality.
+```text
+Top matches for Alex:
+- Senior Data Engineer (Remote) => 0.97
+- Backend Engineer (Munich) => 0.53
+```
